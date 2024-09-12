@@ -82,7 +82,7 @@ class TrucksPage:
         associated_user_from_list = self.page.get_by_text(user.value, exact=True)
         associated_user_from_list.wait_for(state="visible", timeout=5000)
         associated_user_from_list.click()
-        self.unit.fill(truck_info.UNIT.value)
+        self.unit.fill(truck_info.generate_random_unit())
         self.dispatcher_name.fill(truck_info.DISPATCHER_NAME.value)
         self.dispatcher_phone_number.fill(truck_info.DISPATCHER_PHONE.value)
 
@@ -100,4 +100,3 @@ class TrucksPage:
 
     def create_truck(self):
         self.create_truck_button_on_truck_page.click()
-        time.sleep(10)
