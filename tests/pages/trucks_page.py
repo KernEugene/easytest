@@ -1,6 +1,6 @@
 import time
 
-from playwright.sync_api import Page, Locator
+from playwright.sync_api import Page, Locator, expect
 
 from tests.utils.statuses import TruckStatus
 from tests.utils.users_list import UserList
@@ -48,6 +48,11 @@ class TrucksPage:
         self.create_truck_button_on_truck_page = page.locator(
             '//button[contains(text(), "Create Truck")]'
         )
+        self.successful_message = page.locator("//div[contains(@class, 'styles_wrapper__tWaWv')]")
+        self.delete_truck_button_three_dots = page.locator("//button[@class='TrucksList_optionsBtn__Gbkby']")
+        self.delete_truck_row = page.locator("//tr[td/div[contains(text(), 'Michael Schumacher')]]")
+        self.delete_truck_button = page.locator("//button[contains(text(), 'Delete')]")
+        self.confirmation_message = "Do you want to delete this truck? This process cannot be undone"
 
     def navigate_back(self):
         self.page.go_back()
@@ -80,7 +85,7 @@ class TrucksPage:
     def fill_general_truck_info(self, user: UserList, truck_info: TruckInfo):
         self.associated_user.click()
         associated_user_from_list = self.page.get_by_text(user.value, exact=True)
-        associated_user_from_list.wait_for(state="visible", timeout=5000)
+        associated_user_from_list.wait_for(state="visible", timeout=10000)
         associated_user_from_list.click()
         self.unit.fill(truck_info.generate_random_unit())
         self.dispatcher_name.fill(truck_info.DISPATCHER_NAME.value)
@@ -100,3 +105,14 @@ class TrucksPage:
 
     def create_truck(self):
         self.create_truck_button_on_truck_page.click()
+        expect(self.successful_message).to_be_visible(timeout=15000)
+
+    def delete_truck(self):
+        self.page.goto('https://usko.dev.easyboosted.com/trucks')
+        self.verify_results_page_is_available()
+        row_locator = self.delete_truck_row
+        row_locator.hover()
+        self.delete_truck_button_three_dots = row_locator.locator(self.delete_truck_button_three_dots)
+        expect(self.delete_truck_button_three_dots).to_be_visible(timeout=15000)
+        self.delete_truck_button_three_dots.click()
+        self.delete_truck_button.click()

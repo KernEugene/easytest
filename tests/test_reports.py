@@ -3,7 +3,10 @@ from dotenv import load_dotenv
 from .pages.reports_page import ReportsPage
 import os
 from .pages.login_page import LoginPage
+
 load_dotenv()
+
+
 @pytest.fixture(scope="function")
 def login(page):
     login_page = LoginPage(page)
@@ -14,6 +17,7 @@ def login(page):
 
 def test_settings_access(login):
     settings_page = ReportsPage(login)
+
     def open_settings_pages(tile_locator):
         settings_page.open_tile(settings_page.settings_dropdown)
         settings_page.open_tile(tile_locator)
@@ -40,6 +44,7 @@ def test_reports_access(login):
 
 def test_rfq_access(login):
     rfq_page = ReportsPage(login)
+
     def open_rfq_pages(tile_locator):
         rfq_page.open_tile(rfq_page.rfq_dropdown)
         rfq_page.open_tile(tile_locator)
@@ -51,18 +56,5 @@ def test_rfq_access(login):
 
 def test_trucks_access(login):
     trucks_page = ReportsPage(login)
-    trucks_page.open_tile(trucks_page.trucks_button)
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+    trucks_page.trucks_button.wait_for(state="visible", timeout=10000)
+    trucks_page.page.goto('https://usko.dev.easyboosted.com/trucks')

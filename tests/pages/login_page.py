@@ -1,5 +1,6 @@
 from playwright.sync_api import Page
 
+
 class LoginPage:
     def __init__(self, page: Page):
         self.page = page
@@ -11,7 +12,7 @@ class LoginPage:
         self.login_url = 'https://usko.dev.easyboosted.com/login'
         self.home_page_url = 'https://usko.dev.easyboosted.com/'
         self.login_button = page.get_by_role("button", name="Login")
-        self.logout_button = page.get_by_text("LOG OUT")
+        self.logout_button = page.locator("//a[contains(@href, 'login')]")
 
     def login(self, username: str, password: str):
         self.username_input.fill(username)

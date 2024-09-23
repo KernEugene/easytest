@@ -1,6 +1,7 @@
 import random
 from enum import Enum
 
+
 class TruckInfo(Enum):
     UNIT = "1234511"
     DISPATCHER_NAME = "Tester Megaladon"

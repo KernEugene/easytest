@@ -1,4 +1,3 @@
-
 import pytest
 from dotenv import load_dotenv
 from .pages.trucks_page import TrucksPage
@@ -85,5 +84,8 @@ def test_create_truck(login):
     trucks_page.fill_truck_dims_info(TruckInfo)
     trucks_page.create_truck()
 
-
+def test_delete_truck(login):
+    trucks_page = TrucksPage(login)
+    test_trucks_access(login)
+    trucks_page.delete_truck()
 
