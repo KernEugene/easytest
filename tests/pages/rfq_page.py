@@ -45,6 +45,7 @@ class RfqPage:
         self.blind_bid_checkbox = page.locator('#blindBid')
         self.customer_rate = page.locator('#customerRate')
 
+
     def check_elements_exist(self) -> bool:
         elements = [
             self.available_trucks_counter,

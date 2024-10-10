@@ -116,3 +116,8 @@ class TrucksPage:
         expect(self.delete_truck_button_three_dots).to_be_visible(timeout=15000)
         self.delete_truck_button_three_dots.click()
         self.delete_truck_button.click()
+        time.sleep(1)
+        self.delete_truck_button.click()
+        time.sleep(2)
+
+

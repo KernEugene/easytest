@@ -13,6 +13,9 @@ class LoginPage:
         self.home_page_url = 'https://usko.dev.easyboosted.com/'
         self.login_button = page.get_by_role("button", name="Login")
         self.logout_button = page.locator("//a[contains(@href, 'login')]")
+        self.empty_email_or_password_text = '//p[@class="Form_error_message__eWJpd" and text()="These fields are required."]'
+        self.no_user_with_matching_data_found = '//p[@class="Form_error_message__eWJpd" and text()="No user with matching data found"]'
+        self.invalid_email_or_password_text = '//p[@class="Form_error_message__eWJpd" and text()="Please, enter a valid email"]'
 
     def login(self, username: str, password: str):
         self.username_input.fill(username)

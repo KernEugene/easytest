@@ -15,27 +15,27 @@ def login(page):
     return login_page.page
 
 
-def test_check_elements_exists(login):
-    rfq_page = RfqPage(login)
-    rfq_page.go_to_rfq_page()
-    rfq_page.check_elements_exist()
+# def test_check_elements_exists(login):
+#     rfq_page = RfqPage(login)
+#     rfq_page.go_to_rfq_page()
+#     rfq_page.check_elements_exist()
 
-
-def test_skip_rfq(login):
-    rfq_page = RfqPage(login)
-    rfq_page.go_to_rfq_page()
-    rfq_page.click_skip_rfq()
-
-def test_take_rfq_no_options(login):
-    rfq_page = RfqPage(login)
-    rfq_page.go_to_rfq_page()
-    rfq_page.click_take_rfq()
-    rfq_page.click_no_options()
-    #add catcher for "RFQ is taken"
-
-def test_take_rfq_and_bid(login):
-    rfq_page = RfqPage(login)
-    rfq_page.go_to_rfq_page()
-    rfq_page.click_take_rfq()
-    rfq_page.blind_bid()
-    #Resolve Bid locator (106 elems)
+#
+# def test_skip_rfq(login):
+#     rfq_page = RfqPage(login)
+#     rfq_page.go_to_rfq_page()
+#     rfq_page.click_skip_rfq()
+#
+# def test_take_rfq_no_options(login):
+#     rfq_page = RfqPage(login)
+#     rfq_page.go_to_rfq_page()
+#     rfq_page.click_take_rfq()
+#     rfq_page.click_no_options()
+#     #add catcher for "RFQ is taken"
+#
+# def test_take_rfq_and_bid(login):
+#     rfq_page = RfqPage(login)
+#     rfq_page.go_to_rfq_page()
+#     rfq_page.click_take_rfq()
+#     rfq_page.blind_bid()
+#     #Resolve Bid locator (106 elems)

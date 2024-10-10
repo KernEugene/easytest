@@ -27,3 +27,21 @@ def test_select_domain(login_page):
 def test_log_out(login_page):
     test_valid_login(login_page)
     login_page.logout()
+
+
+def test_error_message_incorrect_email_or_password(login_page):
+    login_page.page.goto(login_page.login_url)
+    login_page.login(os.getenv("ADMIN_EMAIL"), os.getenv("NO_PERMISSIONS_PASSWORD"))
+    login_page.page.wait_for_selector(login_page.no_user_with_matching_data_found, state="visible", timeout=10000)
+
+
+def test_error_message_empty_email_or_password(login_page):
+    login_page.page.goto(login_page.login_url)
+    login_page.login(os.getenv("EMPTY_EMAIL"), os.getenv("EMPTY_PASSWORD"))
+    login_page.page.wait_for_selector(login_page.empty_email_or_password_text, state="visible", timeout=10000)
+
+
+def test_error_message_invalid_email_or_password(login_page):
+    login_page.page.goto(login_page.login_url)
+    login_page.login(os.getenv("INVALID_EMAIL"), os.getenv("INVALID_PASSWORD"))
+    login_page.page.wait_for_selector(login_page.invalid_email_or_password_text, state="visible", timeout=10000)
